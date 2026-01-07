@@ -1,0 +1,112 @@
+Create a complete, modern, responsive website for selling puppies.
+
+The website must be fully in American English.
+
+The website has two main modules:
+
+====================
+1) PUBLIC / CLIENT SIDE (Visitors)
+====================
+
+- The visitor can:
+  - Visit the homepage
+  - See a list of available puppies
+  - Click on a puppy to see its details (name, description, age, image)
+  - Navigate using a menu (Home, Available Puppies, About, Contact)
+
+Pages:
+- Home page:
+  - Hero section with a nice banner and a slogan like: "Find Your Perfect Puppy"
+  - Section showing some featured puppies
+  - Short description about the breeding / store
+
+- Available Puppies page:
+  - Display all puppies in a grid or cards layout
+  - Each card shows:
+    - Puppy image
+    - Name
+    - Age
+    - A "View Details" button
+
+- Puppy Details page:
+  - Large image of the puppy
+  - Name
+  - Age
+  - Full description
+
+- About page:
+  - Explain the purpose of the site and the love for dogs
+
+- Contact page:
+  - Simple contact information (email, phone, location)
+
+IMPORTANT:
+- Visitors can ONLY view the site.
+- They cannot add, edit, or delete anything.
+
+====================
+2) ADMIN MODULE (Dashboard)
+====================
+
+- The admin has a secure admin panel / dashboard.
+- The admin can:
+  - Add a new puppy
+  - Edit an existing puppy
+  - Delete a puppy
+
+For each puppy, the admin can manage these fields:
+- Name
+- Description
+- Age
+- Image
+
+Admin features:
+- Admin login page
+- Admin dashboard
+- A table or list of all puppies with:
+  - Edit button
+  - Delete button
+- A form to:
+  - Add a new puppy
+  - Edit an existing puppy
+
+====================
+TECHNICAL REQUIREMENTS
+====================
+
+- The site must be:
+  - Modern
+  - Clean
+  - Responsive (works on phone, tablet, computer)
+- Use a simple, clean, professional design
+- Use cards for puppy display
+- Use a navigation bar and a footer
+- Include sample data (example puppies) by default
+
+====================
+CONTENT REQUIREMENTS
+====================
+
+- All texts must be in American English.
+- The design must be friendly, warm, and suitable for a pet shop / dog breeding website.
+
+====================
+BONUS (if possible)
+====================
+
+- Search or filter puppies by age or name
+- Nice animations and hover effects
+- Confirmation dialog before deleting a puppy in admin
+
+====================
+DELIVERABLE
+====================
+
+- Generate the FULL WEBSITE:
+  - Frontend for visitors
+  - Admin dashboard
+  - All necessary pages
+  - All necessary components
+  - With example data
+
+The project should be ready to use and easy to extend.
