@@ -5,12 +5,33 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 
+// Public Pages
+import Home from "@/pages/Home";
+import AvailablePuppies from "@/pages/AvailablePuppies";
+import PuppyDetails from "@/pages/PuppyDetails";
+import About from "@/pages/About";
+import Contact from "@/pages/Contact";
+
+// Admin Pages
+import AdminDashboard from "@/pages/admin/AdminDashboard";
+import PuppyForm from "@/pages/admin/PuppyForm";
+
 function Router() {
   return (
     <Switch>
-      {/* Add pages below */}
-      {/* <Route path="/" component={Home}/> */}
-      {/* Fallback to 404 */}
+      {/* Public Routes */}
+      <Route path="/" component={Home} />
+      <Route path="/puppies" component={AvailablePuppies} />
+      <Route path="/puppies/:id" component={PuppyDetails} />
+      <Route path="/about" component={About} />
+      <Route path="/contact" component={Contact} />
+
+      {/* Admin Routes */}
+      <Route path="/admin" component={AdminDashboard} />
+      <Route path="/admin/new" component={PuppyForm} />
+      <Route path="/admin/edit/:id" component={PuppyForm} />
+
+      {/* Fallback */}
       <Route component={NotFound} />
     </Switch>
   );

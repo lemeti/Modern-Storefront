@@ -1,38 +1,42 @@
-import { type User, type InsertUser } from "@shared/schema";
-import { randomUUID } from "crypto";
-
-// modify the interface with any CRUD methods
-// you might need
+import { db } from "./db";
+import { puppies, type InsertPuppy, type Puppy } from "@shared/schema";
+import { eq } from "drizzle-orm";
 
 export interface IStorage {
-  getUser(id: string): Promise<User | undefined>;
-  getUserByUsername(username: string): Promise<User | undefined>;
-  createUser(user: InsertUser): Promise<User>;
+  getPuppies(): Promise<Puppy[]>;
+  getPuppy(id: number): Promise<Puppy | undefined>;
+  createPuppy(puppy: InsertPuppy): Promise<Puppy>;
+  updatePuppy(id: number, updates: Partial<InsertPuppy>): Promise<Puppy>;
+  deletePuppy(id: number): Promise<void>;
 }
 
-export class MemStorage implements IStorage {
-  private users: Map<string, User>;
-
-  constructor() {
-    this.users = new Map();
+export class DatabaseStorage implements IStorage {
+  async getPuppies(): Promise<Puppy[]> {
+    return await db.select().from(puppies);
   }
 
-  async getUser(id: string): Promise<User | undefined> {
-    return this.users.get(id);
+  async getPuppy(id: number): Promise<Puppy | undefined> {
+    const [puppy] = await db.select().from(puppies).where(eq(puppies.id, id));
+    return puppy;
   }
 
-  async getUserByUsername(username: string): Promise<User | undefined> {
-    return Array.from(this.users.values()).find(
-      (user) => user.username === username,
-    );
+  async createPuppy(insertPuppy: InsertPuppy): Promise<Puppy> {
+    const [puppy] = await db.insert(puppies).values(insertPuppy).returning();
+    return puppy;
   }
 
-  async createUser(insertUser: InsertUser): Promise<User> {
-    const id = randomUUID();
-    const user: User = { ...insertUser, id };
-    this.users.set(id, user);
-    return user;
+  async updatePuppy(id: number, updates: Partial<InsertPuppy>): Promise<Puppy> {
+    const [updated] = await db
+      .update(puppies)
+      .set(updates)
+      .where(eq(puppies.id, id))
+      .returning();
+    return updated;
+  }
+
+  async deletePuppy(id: number): Promise<void> {
+    await db.delete(puppies).where(eq(puppies.id, id));
   }
 }
 
-export const storage = new MemStorage();
+export const storage = new DatabaseStorage();
