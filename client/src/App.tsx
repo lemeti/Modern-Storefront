@@ -10,7 +10,6 @@ import Home from "@/pages/Home";
 import AvailablePuppies from "@/pages/AvailablePuppies";
 import PuppyDetails from "@/pages/PuppyDetails";
 import About from "@/pages/About";
-import Contact from "@/pages/Contact";
 
 // Admin Pages
 import AdminDashboard from "@/pages/admin/AdminDashboard";
@@ -24,7 +23,6 @@ function Router() {
       <Route path="/puppies" component={AvailablePuppies} />
       <Route path="/puppies/:id" component={PuppyDetails} />
       <Route path="/about" component={About} />
-      <Route path="/contact" component={Contact} />
 
       {/* Admin Routes */}
       <Route path="/admin" component={AdminDashboard} />

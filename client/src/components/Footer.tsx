@@ -23,12 +23,11 @@ export function Footer() {
             <ul className="space-y-4">
               <li><Link href="/puppies" className="text-muted-foreground hover:text-primary transition-colors">Available Puppies</Link></li>
               <li><Link href="/about" className="text-muted-foreground hover:text-primary transition-colors">About Us</Link></li>
-              <li><Link href="/contact" className="text-muted-foreground hover:text-primary transition-colors">Contact</Link></li>
               <li><Link href="/admin" className="text-muted-foreground hover:text-primary transition-colors">Admin Login</Link></li>
             </ul>
           </div>
           
-          <div>
+          <div className="hidden">
             <h4 className="font-bold mb-6">Contact</h4>
             <ul className="space-y-4 text-muted-foreground">
               <li>123 Dogwood Lane</li>

@@ -13,7 +13,6 @@ export function Navbar() {
     { href: "/", label: "Home" },
     { href: "/puppies", label: "Available Puppies" },
     { href: "/about", label: "About Us" },
-    { href: "/contact", label: "Contact" },
   ];
 
   const isAdmin = !!user;
