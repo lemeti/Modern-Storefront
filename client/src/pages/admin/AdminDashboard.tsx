@@ -63,7 +63,7 @@ export default function AdminDashboard() {
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center space-x-4">
             <Link href="/">
-              <span className="font-display font-bold text-xl cursor-pointer">PuppyLove</span>
+              <span className="font-display font-bold text-xl cursor-pointer">Labrador Retriever Puppies For Adoption and Rescue</span>
             </Link>
             <div className="h-6 w-px bg-border mx-2" />
             <span className="flex items-center text-sm font-medium text-muted-foreground bg-secondary px-3 py-1 rounded-full">

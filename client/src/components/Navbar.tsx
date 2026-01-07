@@ -27,7 +27,7 @@ export function Navbar() {
             <PawPrint className="h-6 w-6 text-primary" />
           </div>
           <span className="font-display font-bold text-xl tracking-tight text-foreground group-hover:text-primary transition-colors">
-            PuppyLove
+            Labrador Retriever Puppies For Adoption and Rescue
           </span>
         </Link>
 

@@ -35,7 +35,7 @@ export default function About() {
         {/* Header */}
         <section className="py-20 bg-secondary/30 text-center">
           <div className="container mx-auto px-4">
-            <h1 className="font-display text-4xl md:text-6xl font-bold mb-6">About PuppyLove</h1>
+            <h1 className="font-display text-4xl md:text-6xl font-bold mb-6">About Labrador Retriever Puppies For Adoption and Rescue</h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Connecting loving families with healthy, happy puppies since 2010.
             </p>
@@ -54,7 +54,7 @@ export default function About() {
               >
                 <h2 className="font-display text-3xl font-bold text-foreground mb-6">Our Mission</h2>
                 <p className="mb-6">
-                  At PuppyLove, we believe that dogs aren't just pets—they're family. Our journey began over a decade ago with a simple mission: to raise puppies the right way. No kennels, no cages, just a loving home environment where each puppy gets the start they deserve.
+                  At Labrador Retriever Puppies For Adoption and Rescue, we believe that dogs aren't just pets—they're family. Our journey began over a decade ago with a simple mission: to raise puppies the right way. No kennels, no cages, just a loving home environment where each puppy gets the start they deserve.
                 </p>
                 <p>
                   We specialize in ethically breeding Golden Retrievers and Labradors, focusing on temperament and health above all else. When you adopt from us, you're not just getting a dog; you're gaining a loyal companion raised with purpose and heart.

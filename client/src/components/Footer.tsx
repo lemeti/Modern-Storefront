@@ -11,7 +11,7 @@ export function Footer() {
               <div className="bg-primary/10 p-2 rounded-full">
                 <PawPrint className="h-6 w-6 text-primary" />
               </div>
-              <span className="font-display font-bold text-xl tracking-tight">PuppyLove</span>
+              <span className="font-display font-bold text-xl tracking-tight">Labrador Retriever Puppies For Adoption and Rescue</span>
             </Link>
             <p className="text-muted-foreground leading-relaxed">
               Ethically raised, health-tested puppies ready to become your new best friend.
@@ -55,7 +55,7 @@ export function Footer() {
         </div>
         
         <div className="border-t border-border pt-8 text-center text-sm text-muted-foreground">
-          <p>© {new Date().getFullYear()} PuppyLove. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Labrador Retriever Puppies For Adoption and Rescue. All rights reserved.</p>
         </div>
       </div>
     </footer>
