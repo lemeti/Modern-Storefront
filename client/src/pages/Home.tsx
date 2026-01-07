@@ -66,7 +66,7 @@ export default function Home() {
               <div className="relative z-10 rounded-[3rem] overflow-hidden shadow-2xl border-8 border-white transform rotate-3 hover:rotate-0 transition-transform duration-500">
                 {/* Unsplash image of a golden retriever puppy */}
                 <img 
-                  src="https://images.unsplash.com/photo-1601979031925-424e53b6caaa?q=80&w=1000&auto=format&fit=crop" 
+                  src="https://scontent.fdla4-1.fna.fbcdn.net/v/t39.30808-6/611472607_122112448773100518_1775693389522436530_n.jpg?stp=cp6_dst-jpg_p552x414_tt6&_nc_cat=100&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeFJnUs3LO93h05SoYCT5UjogSxjWmJukvyBLGNaYm6S_O6jlMIctct6wQfZkgVOrjq4hR802_qOgFtTCmiJ7R7N&_nc_ohc=PwaJcHLTQowQ7kNvwHAUPUn&_nc_oc=AdnG4-Vw8l9fymnac9mfY_GieORcGMVF83AZCNpI8yLUDIevoC4Sa4Vd6sf_b0fGlQo&_nc_zt=23&_nc_ht=scontent.fdla4-1.fna&_nc_gid=FD_z_vl5O-seSqp3T0-Fcw&oh=00_AfrSsftQ7pQz12-gDElmrIW1UxTaMQIaQia1MO9heymNXw&oe=69641E8F" 
                   alt="Happy Golden Retriever Puppy" 
                   className="w-full h-auto object-cover"
                 />

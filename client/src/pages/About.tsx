@@ -69,7 +69,7 @@ export default function About() {
               >
                 <div className="aspect-[4/3] rounded-3xl overflow-hidden shadow-xl rotate-3 bg-secondary">
                   <img 
-                    src="https://images.unsplash.com/photo-1591160690555-5debfba289f0?q=80&w=1000&auto=format&fit=crop" 
+                    src="https://scontent.fdla4-1.fna.fbcdn.net/v/t39.30808-6/606058250_122112077715100518_6078449662331098456_n.jpg?stp=dst-jpg_s590x590_tt6&_nc_cat=109&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeFuZAACDUDuwBkIy5pMyoR7YfG64am_Jj5h8brhqb8mPra4wdo6pH36gDLcdN9YRWeZ2sgZhjOYiUiNyR5co8E_&_nc_ohc=Ynu2qWDEmwIQ7kNvwGLxnMC&_nc_oc=AdlokyZ17IN0nsI-_LdqFM3cvf4DRVFq6UreWxgcAu0VrpxigIZg49ni6hzavZD-cGk&_nc_zt=23&_nc_ht=scontent.fdla4-1.fna&_nc_gid=1ivfWpz2IeOj1gNIsmQcmQ&oh=00_Afpr448sK5n-nVXxnQrUW0ySeSZnvsoS_fcCY9dgFO77TA&oe=696440B9" 
                     alt="Happy dogs playing" 
                     className="w-full h-full object-cover"
                   />
