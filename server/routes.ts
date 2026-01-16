@@ -82,6 +82,10 @@ async function seedDatabase() {
       age: 3, // months
       breed: "Golden Retriever",
       imageUrl: "https://images.unsplash.com/photo-1552053831-71594a27632d?w=800&auto=format&fit=crop",
+      photos: JSON.stringify([
+        "https://images.unsplash.com/photo-1552053831-71594a27632d?w=1200&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1517849845537-4d257902454a?w=1200&auto=format&fit=crop"
+      ]),
       isFeatured: true
     });
     await storage.createPuppy({
@@ -90,6 +94,7 @@ async function seedDatabase() {
       age: 4, // months
       breed: "French Bulldog",
       imageUrl: "https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=800&auto=format&fit=crop",
+      photos: JSON.stringify([]),
       isFeatured: true
     });
     await storage.createPuppy({
@@ -98,6 +103,7 @@ async function seedDatabase() {
       age: 5, // months
       breed: "German Shepherd Mix",
       imageUrl: "https://images.unsplash.com/photo-1589941013453-ec89f33b5e95?w=800&auto=format&fit=crop",
+      photos: JSON.stringify([]),
       isFeatured: false
     });
     await storage.createPuppy({
@@ -106,6 +112,7 @@ async function seedDatabase() {
       age: 2, // months
       breed: "Poodle",
       imageUrl: "https://images.unsplash.com/photo-1594149929911-78975a43d4f5?w=800&auto=format&fit=crop",
+      photos: JSON.stringify([]),
       isFeatured: false
     });
   }
