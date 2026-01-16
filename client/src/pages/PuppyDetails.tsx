@@ -6,11 +6,13 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ArrowLeft, Calendar, Dog, Heart, Mail, MapPin } from "lucide-react";
 import { motion } from "framer-motion";
+import { useState, useMemo } from "react";
 
 export default function PuppyDetails() {
   const [, params] = useRoute("/puppies/:id");
   const id = parseInt(params?.id || "0");
   const { data: puppy, isLoading } = usePuppy(id);
+  const [mainImage, setMainImage] = useState<string | undefined>(undefined);
 
   if (isLoading) {
     return (
@@ -47,6 +49,21 @@ export default function PuppyDetails() {
     );
   }
 
+  // Parse photos from stored JSON string (if any)
+  const photos = useMemo(() => {
+    try {
+      const parsed = puppy.photos ? JSON.parse(puppy.photos) : [];
+      return Array.isArray(parsed) ? parsed : [];
+    } catch {
+      return [];
+    }
+  }, [puppy?.photos]);
+
+  // initialize main image to imageUrl or first photo
+  if (!mainImage) {
+    setMainImage(puppy.imageUrl || photos[0]);
+  }
+
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <Navbar />
@@ -71,7 +88,7 @@ export default function PuppyDetails() {
             >
               <div className="relative aspect-square rounded-[3rem] overflow-hidden shadow-2xl bg-secondary/30">
                 <img 
-                  src={puppy.imageUrl} 
+                  src={mainImage} 
                   alt={puppy.name} 
                   className="w-full h-full object-cover"
                 />
@@ -81,6 +98,22 @@ export default function PuppyDetails() {
                   </div>
                 )}
               </div>
+
+              {/* Thumbnails */}
+              {photos.length > 0 && (
+                <div className="grid grid-cols-4 gap-3">
+                  {/* show main image as first thumbnail if distinct */}
+                  {[...new Set([puppy.imageUrl, ...photos])].map((url, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setMainImage(url)}
+                      className={`rounded-xl overflow-hidden h-20 w-full border ${mainImage === url ? "border-primary" : "border-border"}`}
+                    >
+                      <img src={url} alt={`${puppy.name} ${idx}`} className="w-full h-full object-cover" />
+                    </button>
+                  ))}
+                </div>
+              )}
             </motion.div>
 
             {/* Info Column */}
@@ -124,7 +157,7 @@ export default function PuppyDetails() {
                 </div>
 
                 <div className="pt-4 flex gap-4">
-                  <Link href="/contact" className="flex-1">
+                  <Link href={`/contact?puppy=${puppy.id}&name=${encodeURIComponent(puppy.name)}`} className="flex-1">
                     <Button size="lg" className="w-full py-6 text-lg rounded-xl shadow-lg shadow-primary/20">
                       Inquire Now
                     </Button>
