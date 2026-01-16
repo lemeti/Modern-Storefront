@@ -12,6 +12,9 @@ export const puppies = pgTable("puppies", {
   age: integer("age").notNull(), // in months
   breed: text("breed").notNull(),
   imageUrl: text("image_url").notNull(),
+  // New column: store additional photo URLs as a JSON string.
+  // We store JSON string in a text column to keep schema/backwards compatibility.
+  photos: text("photos").default("[]"),
   isFeatured: boolean("is_featured").default(false),
   createdAt: timestamp("created_at").defaultNow(),
 });
