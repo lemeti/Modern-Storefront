@@ -1,7 +1,7 @@
 import { useAuth } from "@/hooks/use-auth";
 import { Button } from "@/components/ui/button";
 import { Link, useRoute, useLocation } from "wouter";
-import { ArrowLeft, Loader2, Save } from "lucide-react";
+import { ArrowLeft, Loader2, Save, Plus, Trash2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -10,13 +10,14 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { insertPuppySchema, type InsertPuppy } from "@shared/schema";
 import { useCreatePuppy, useUpdatePuppy, usePuppy } from "@/hooks/use-puppies";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { z } from "zod";
 
 // Extend schema for form validation (zod resolver handles coercion)
 const formSchema = insertPuppySchema.extend({
   age: z.coerce.number().min(0, "Age must be a positive number"),
   imageUrl: z.string().url("Must be a valid URL"),
+  // we will manage photos as an array in the UI and stringify before submitting
 });
 
 export default function PuppyForm() {
@@ -46,6 +47,9 @@ export default function PuppyForm() {
     }
   });
 
+  // Local state to manage multiple photo URLs
+  const [photoUrls, setPhotoUrls] = useState<string[]>([]);
+
   // Populate form when data loads
   useEffect(() => {
     if (puppy && isEditing) {
@@ -57,14 +61,27 @@ export default function PuppyForm() {
         imageUrl: puppy.imageUrl,
         isFeatured: puppy.isFeatured || false,
       });
+
+      try {
+        const parsed = puppy.photos ? JSON.parse(puppy.photos) : [];
+        setPhotoUrls(Array.isArray(parsed) ? parsed : []);
+      } catch {
+        setPhotoUrls([]);
+      }
     }
   }, [puppy, isEditing, reset]);
 
   const onSubmit = async (data: InsertPuppy) => {
+    // attach photos as JSON string
+    const payload: any = {
+      ...data,
+      photos: JSON.stringify(photoUrls || []),
+    };
+
     if (isEditing) {
-      await updatePuppy.mutateAsync({ id, data });
+      await updatePuppy.mutateAsync({ id, data: payload });
     } else {
-      await createPuppy.mutateAsync(data);
+      await createPuppy.mutateAsync(payload);
     }
     setLocation("/admin");
   };
@@ -78,6 +95,18 @@ export default function PuppyForm() {
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
       </div>
     );
+  }
+
+  function addPhoto() {
+    setPhotoUrls((s) => [...s, ""]);
+  }
+
+  function updatePhoto(index: number, value: string) {
+    setPhotoUrls((s) => s.map((p, i) => (i === index ? value : p)));
+  }
+
+  function removePhoto(index: number) {
+    setPhotoUrls((s) => s.filter((_, i) => i !== index));
   }
 
   return (
@@ -127,11 +156,35 @@ export default function PuppyForm() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="imageUrl">Image URL</Label>
+                <Label htmlFor="imageUrl">Main Image URL</Label>
                 <Input id="imageUrl" {...register("imageUrl")} placeholder="https://images.unsplash.com/..." />
                 {errors.imageUrl && <p className="text-sm text-destructive">{errors.imageUrl.message}</p>}
                 <p className="text-xs text-muted-foreground">Tip: Use Unsplash for high quality images.</p>
               </div>
+            </div>
+
+            <div className="space-y-2">
+              <Label>Additional Photo URLs</Label>
+              <div className="space-y-3">
+                {photoUrls.map((p, idx) => (
+                  <div key={idx} className="flex items-center gap-3">
+                    <Input
+                      value={p}
+                      onChange={(e) => updatePhoto(idx, e.target.value)}
+                      placeholder="https://images.unsplash.com/..."
+                    />
+                    <Button type="button" variant="ghost" size="icon" onClick={() => removePhoto(idx)} className="h-10 w-10">
+                      <Trash2 className="w-4 h-4" />
+                    </Button>
+                  </div>
+                ))}
+                <div>
+                  <Button type="button" variant="outline" onClick={addPhoto} className="flex items-center">
+                    <Plus className="w-4 h-4 mr-2" /> Add Photo
+                  </Button>
+                </div>
+              </div>
+              <p className="text-xs text-muted-foreground">Add multiple photo URLs to show in the puppy gallery.</p>
             </div>
 
             <div className="space-y-2">
