@@ -103,7 +103,7 @@ export default function PuppyDetails() {
               {photos.length > 0 && (
                 <div className="grid grid-cols-4 gap-3">
                   {/* show main image as first thumbnail if distinct */}
-                  {[...new Set([puppy.imageUrl, ...photos])].map((url, idx) => (
+                  {Array.from(new Set([puppy.imageUrl, ...photos])).map((url, idx) => (
                     <button
                       key={idx}
                       onClick={() => setMainImage(url)}
@@ -157,7 +157,7 @@ export default function PuppyDetails() {
                 </div>
 
                 <div className="pt-4 flex gap-4">
-                  <Link href={`/contact?puppy=${puppy.id}&name=${encodeURIComponent(puppy.name)}`} className="flex-1">
+                  <Link href={`/inquiry/${puppy.id}`} className="flex-1">
                     <Button size="lg" className="w-full py-6 text-lg rounded-xl shadow-lg shadow-primary/20">
                       Inquire Now
                     </Button>
