@@ -23,7 +23,16 @@ export async function registerRoutes(
     if (!puppy) {
       return res.status(404).json({ message: 'Puppy not found' });
     }
-    res.json(puppy);
+    // Parse photos JSON string if it exists
+    const photos = puppy.photos ? JSON.parse(puppy.photos) : [];
+    res.json({ ...puppy, photos });
+  });
+
+  // Inquiry route
+  app.post("/api/inquiries", async (req, res) => {
+    // In a real app, we would store this in a table. 
+    // For now, we'll just return the success message requested.
+    res.json({ message: "Please contact the seller for the deposit payment before proceeding." });
   });
 
   // Protected routes
